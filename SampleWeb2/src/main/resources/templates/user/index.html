@@ -63,10 +63,16 @@
 							<td th:text="${user.userId}"></td>
 							<td th:text="${user.userName}"></td>
 							<td th:text="${user.sex}"></td>
-							<td th:text="${user.birthday}"></td>
+							<!-- <td th:text="${user.birthday}"></td> -->
+							<td th:text="${#dates.format(new java.util.Date(user.birthday), 'yyyy年MM月dd日')}"></td>
 							<td th:text="${user.mailAddress}"></td>
+							<!-- 
 							<td th:text="${user.insertDate}"></td>
-							<td th:text="${user.updateDate}"></td>
+							<td th:text="${user.updateDate}"></td>							
+							 -->
+ 							<td th:text="${#dates.format(new java.util.Date(user.insertDate), 'yyyy/MM/dd HH:mm:ss')}"></td>
+							<td th:text="${#dates.format(new java.util.Date(user.updateDate), 'yyyy/MM/dd HH:mm:ss')}"></td>
+
 						</tr>
 					</tbody>
 				</table>

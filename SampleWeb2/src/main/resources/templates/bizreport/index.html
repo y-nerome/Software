@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head_fragment(title, scripts, links)">
+<title>業務報告書一覧</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
+<script th:src="@{/js/openclose.js}"></script>
+</head>
+<body>
+	<div th:insert="~{layout/header}"></div>
+	<div id="contents">
+		<div id="main">
+			<h2 class="title">業務報告書一覧</h2>
+			<form th:action="@{/user/}" th:object="${tpBizReportForm}" method="post">
+				<div class="Form">
+					<div class="Form-Item">
+						<p class="Form-Item-Label">対象年度</p>
+						<select class="Form-Item-Input" name="targetyear" th:field="*{strTargetYear}" >
+							<option value="">指定なし</option>
+							<option value="2024" th:selected="${ '2024' == strTargetYear }">2024</option>
+							<option value="2025" th:selected="${ '2025' == strTargetYear }">2025</option>
+							<option value="2026" th:selected="${ '2026' == strTargetYear }">2026</option>
+							<option value="2027" th:selected="${ '2027' == strTargetYear }">2027</option>
+							<option value="2028" th:selected="${ '2028' == strTargetYear }">2028</option>
+							<option value="2029" th:selected="${ '2029' == strTargetYear }">2029</option>
+							<option value="2030" th:selected="${ '2030' == strTargetYear }">2030</option>
+						</select>
+					</div>
+					<div class="Form-Item">
+						<p class="Form-Item-Label">期間</p>
+						<select class="Form-Item-Input" name="targetyear" th:field="*{strTargetYear}" >
+							<option value="">指定なし</option>
+							<option value="0" th:selected="${ '0' == strTermKbn }">前期</option>
+							<option value="1" th:selected="${ '1' == strTermKbn }">後期</option>
+						</select>
+					</div>
+					<div class="Form-Item">
+						<p class="Form-Item-Label">ユーザーID</p>
+						<input type="text" class="Form-Item-Input" name="user_name" th:field="*{intUserId}" th:value="*{intUserId}"  placeholder="例）99999" />
+					</div>
+
+					<div class="c">
+						<input type="submit" name="search" class="Form-Btn" value="検索" >
+					</div>
+				</div>
+				<br>
+				<br>
+				<table class="ta1">
+					<thead>
+						<tr>
+							<th>選択</th>
+							<th>ユーザーID</th>
+							<th>対象年度</th>
+							<th>区分(前期/後期)</th>
+							<th>登録日時</th>
+							<th>更新日時</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bizReport : *{listTPTBizReportEntity}" class="align-middle">
+							<td>
+								<input type="radio" name="editUserId" th:field="*{strEditBizreportId}" th:value="${bizReport.bizreportId}" />
+							</td>
+							<td th:text="${bizReport.userId}"></td>
+							<td th:text="${bizReport.targetYear}"></td>
+							<td th:text="${bizReport.termKbn}"></td>
+ 							<td th:text="${#dates.format(new java.util.Date(user.insertDate), 'yyyy/MM/dd HH:mm:ss')}"></td>
+							<td th:text="${#dates.format(new java.util.Date(user.updateDate), 'yyyy/MM/dd HH:mm:ss')}"></td>
+
+						</tr>
+					</tbody>
+				</table>
+				<div class="c">
+					<input type="submit" name="create" class="Form-Btn" value="登録" >
+					<input type="submit" name="update" class="Form-Btn" value="更新" >
+				</div>
+			</form>
+		</div>
+	</div>
+	<div th:insert="~{layout/footer}"></div>
+</body>
+</html>

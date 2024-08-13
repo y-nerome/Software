@@ -50,12 +50,12 @@ public class TPUserService {
     	// 検索条件：ユーザーID
     	if(!Objects.isNull(form.getIntUserId())) {
     		// 検索条件を追加
-    		strSql += " And USERID = "+form.getIntUserId().toString()+" ";
+    		strSql += " And USER_ID = "+form.getIntUserId().toString()+" ";
     	}
     	// 検索条件：名前
     	if(!Objects.isNull(form.getStrUserName()) && !StringUtils.isEmpty(form.getStrUserName())) {
     		// 検索条件を追加
-    		strSql += " And USERNAME like '%"+form.getStrUserName()+"%' ";
+    		strSql += " And USER_NAME like '%"+form.getStrUserName()+"%' ";
     	}
     	// 検索条件：性別
     	if(!Objects.isNull(form.getStrSex()) && !StringUtils.isEmpty(form.getStrSex())) {
@@ -63,7 +63,7 @@ public class TPUserService {
     		strSql += " And SEX = '"+form.getStrSex()+"' ";
     	}
     	// 並びをつける
-    	strSql += " ORDER BY USERID ";
+    	strSql += " ORDER BY USER_ID ";
     	
     	return entityManager.createNativeQuery(strSql, TPTUserEntity.class).getResultList();
     	
