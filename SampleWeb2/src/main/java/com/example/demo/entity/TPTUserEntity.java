@@ -20,14 +20,14 @@ public class TPTUserEntity {
 	 * ユーザーID
 	 */
     @Id
-    @Column(name = "USERID")
+    @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
     
     /**
      * ユーザー名
      */
-    @Column(name = "USERNAME")
+    @Column(name = "USER_NAME")
 	private String userName;
     
     /**
@@ -45,14 +45,14 @@ public class TPTUserEntity {
     /**
      * メールアドレス
      */
-    @Column(name = "MAILADDRESS")
+    @Column(name = "MAIL_ADDRESS")
 	private String mailAddress;
     
     
     /**
      * ログインID
      */
-    @Column(name = "LOGINID")
+    @Column(name = "LOGIN_ID")
 	private String loginId;
     
     
@@ -65,25 +65,25 @@ public class TPTUserEntity {
     /**
      * 登録ユーザーID
      */
-    @Column(name = "INSERTUSER")
+    @Column(name = "INSERT_USER")
 	private Integer insertUser;
     
     /**
      * 登録日時
      */
-    @Column(name = "INSERTDATE")
+    @Column(name = "INSERT_DATE")
 	private LocalDateTime insertDate;
     
     /**
      * 更新ユーザーID
      */
-    @Column(name = "UPDATEUSER")
+    @Column(name = "UPDATE_USER")
 	private Integer updateUser;
     
     /**
      * 更新日時
      */
-    @Column(name = "UPDATEDATE")
+    @Column(name = "UPDATE_DATE")
 	private LocalDateTime updateDate;
     
     /**

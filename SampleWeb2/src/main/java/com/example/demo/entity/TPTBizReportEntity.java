@@ -8,12 +8,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "t_bizreport")
+@IdClass(TPTBizReportEntityPK.class)
 public class TPTBizReportEntity {
 	
 	/**
@@ -27,18 +29,21 @@ public class TPTBizReportEntity {
 	/**
 	 * ユーザーID
 	 */
+	@Id
 	@Column(name = "USER_ID")
 	private Integer userId;
 	
 	/**
 	 * 対象年
 	 */
+	@Id
 	@Column(name = "TARGET_YEAR")
 	private String targetYear;
 	
 	/**
 	 * 対象区分
 	 */
+	@Id
 	@Column(name = "TERM_KBN")
 	private String termKbn;
 	
