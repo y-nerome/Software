@@ -1,0 +1,14 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Spring!</title>
+    </head>
+    <body>
+        <h1>Hello Spring!</h1>
+        <p>message1: <span th:text="${message1}"></span></p>
+        <p th:text="'message2: ' + ${message2}"></p>
+        <p th:text="'message3-1: ' + ${message3}"></p>
+        <p th:utext="'message3-2: ' + ${message3}"></p>
+    </body>
+</html>

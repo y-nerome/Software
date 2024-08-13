@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head_fragment(title, scripts, links)">
+<title>ユーザー情報一覧</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
+<script th:src="@{/js/openclose.js}"></script>
+</head>
+<body>
+	<div th:insert="~{layout/header}"></div>
+	<div id="contents">
+		<div id="main">
+			<h2 class="title">ユーザー情報一覧</h2>
+			<form th:action="@{/user/}" th:object="${tpUserForm}" method="post">
+				<div class="Form">
+					<div class="Form-Item">
+						<p class="Form-Item-Label">
+							<!-- <span class="Form-Item-Label-Required">必須</span> -->ID
+						</p>
+						<input type="text" class="Form-Item-Input" name="user_name" th:field="*{intUserId}" th:value="*{intUserId}"  placeholder="例）99999" />
+					</div>
+					<div class="Form-Item">
+						<p class="Form-Item-Label">
+						<!-- <span class="Form-Item-Label-Required">必須</span> -->名前
+						</p>
+						<input type="text" class="Form-Item-Input" name="user_name" th:field="*{strUserName}" th:value="*{strUserName}" placeholder="例）〇〇　〇〇" />
+					</div>
+					<div class="Form-Item">
+						<p class="Form-Item-Label">
+						<!-- <span class="Form-Item-Label-Required">必須</span> -->性別
+						</p>
+						<select class="Form-Item-Input" name="sex" th:field="*{strSex}" >
+							<option value="">指定なし</option>
+							<option value="0" th:selected="${ 0 == strSex }">男性</option>
+							<option value="1" th:selected="${ 1 == strSex }">女性</option>
+						</select>
+					</div>
+					<div class="c">
+						<input type="submit" name="search" class="Form-Btn" value="検索" >
+					</div>
+				</div>
+				<br>
+				<br>
+				<table class="ta1">
+					<thead>
+						<tr>
+							<th>選択</th>
+							<th>ID</th>
+							<th>名前</th>
+							<th>性別</th>
+							<th>誕生日</th>
+							<th>メールアドレス</th>
+							<th>登録日時</th>
+							<th>更新日時</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : *{tptUserEntityList}" class="align-middle">
+							<td>
+								<input type="radio" name="editUserId" th:field="*{strEditUserId}" th:value="${user.userId}" />
+							</td>
+							<td th:text="${user.userId}"></td>
+							<td th:text="${user.userName}"></td>
+							<td th:text="${user.sex}"></td>
+							<td th:text="${user.birthday}"></td>
+							<td th:text="${user.mailAddress}"></td>
+							<td th:text="${user.insertDate}"></td>
+							<td th:text="${user.updateDate}"></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="c">
+					<input type="submit" name="create" class="Form-Btn" value="登録" >
+					<input type="submit" name="update" class="Form-Btn" value="更新" >
+				</div>
+			</form>
+		</div>
+	</div>
+	<div th:insert="~{layout/footer}"></div>
+</body>
+</html>

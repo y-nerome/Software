@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head_fragment(title, scripts, links)">
+<title>ユーザー情報一覧</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<script th:src="@{/js/openclose.js}"></script>
+</head>
+<body>
+	<div th:insert="~{layout/header}"></div>
+	<div id="contents">
+		<div id="main">
+		<h2 class="title">ユーザー情報一覧</h2>
+	    <table class="ta1">
+	        <thead>
+	            <tr>
+	                <th>ID</th>
+	                <th>名前</th>
+	                <th>住所</th>
+	                <th>電話番号</th>
+	                <th>更新日時</th>
+	                <th>登録日時</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
+		          <td th:text="*{user_id}"></td>
+		          <td th:text="*{user_name}"></td>
+		          <td th:text="*{mail_address}"></td>
+		          <td th:text="*{sex}"></td>
+		          <td th:text="*{insert_user}"></td>
+		          <td th:text="*{insert_date}"></td>
+		          <td th:text="*{update_user}"></td>
+		          <td th:text="*{update_date}"></td>
+		        </tr>
+		    </tbody>
+	    </table>
+	    <input type="submit" value="検索" class="btn">
+	    
+	    
+	    <h2 class="title">登録方法</h2>
+	    <form action="#" th:action="@{/user/create}" th:object="${createform}" method="post">
+	    	<p>Id: <input name="user_name" type="text" th:field="*{user_name}" /></p>
+	    	<p>Message: <input name="mail_address" type="text" th:field="*{mail_address}" /></p>
+	    	<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+	    </form>
+		</div>
+	
+	
+	
+	</div>
+    <div th:insert="~{layout/footer}"></div>
+</body>
+</html>
